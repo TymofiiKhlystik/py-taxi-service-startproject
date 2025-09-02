@@ -29,5 +29,5 @@ class Car(models.Model):
 
 
 class Driver(AbstractUser):
-    license_number = models.CharField(max_length=63, unique=True)
+    license_number = models.CharField(max_length=255, unique=True)
 
