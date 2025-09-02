@@ -5,23 +5,22 @@ from taxi_service import settings
 
 
 class Manufacturer(models.Model):
-    name = models.CharField(max_length=100)
-    country = models.CharField(max_length=100)
+    name = models.CharField(max_length=255, unique=True)
+    country = models.CharField(max_length=255)
 
     def __str__(self):
-        return f"{self.name} {self.country}"
+        return {self.name}, {self.country}
 
     class Meta:
         ordering = ("name",)
 
 
 class Car(models.Model):
-    model = models.CharField(max_length=100)
+    model = models.CharField(max_length=255)
     manufacturer = models.ForeignKey(
         Manufacturer,
         on_delete=models.CASCADE,
         related_name="cars",
-        unique=True
     )
     drivers = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
